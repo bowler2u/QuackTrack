@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
+    
+</head>
+    <body>
+        <div class="container contact">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="contact-info">
+                        <img class="contact-logo" src="./assets/img/QuackTrack.png" alt="image"/>
+                        <h2>Welcome To QuackTrack</h2>
+                        <h4>We're tracking ducks around the globe and would love your help! </h4>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                   <form action="http://localhost:8080/submit" method="post"> 
+                    <div class="contact-form">
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="name">Name:</label>
+                          <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="location">Location</label>
+                          <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="location" placeholder="Enter location" name="location">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="time">Time</label>
+                            <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="time" name="time">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="duckCount">Duck Count</label>
+                          <div class="col-sm-10">          
+                            <input type="number"  class="form-control" id="duckCount" placeholder="How many ducks were fed" name="duckCount" min="1">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="duckFood">Food Type</label>
+                          <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="duckFood" placeholder="What were the ducks fed" name="duckFood">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="foodCount">Food Quantity</label>
+                          <div class="col-sm-10">          
+                            <input type="text" class="form-control" id="foodCount" placeholder="Quantity of feed" name="foodCount">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="comment">Comment:</label>
+                          <div class="col-sm-10">
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group">        
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                          </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    <script src="./assets/js/main.js"></script>
+    </body>
+</html>
