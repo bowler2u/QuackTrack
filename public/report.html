@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- BootStrap and Table Style Sheets -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bootstrap-css" >
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
@@ -21,28 +22,10 @@
   </head>
   <body ng-app="myApp" ng-controller="Ctrl">
    <!--Navbar -->
-	<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-		<a class="navbar-brand" href="/">QuackTrack</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
-			aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item ">
-					<a class="nav-link" href="/">
-						<i class=""></i> Home
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" href="/">
-						<i class=""></i> Logout
-					</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+<ul class="nav nav-pills">
+  <li role="presentation" class="navbar-brand "><a href="/">Logout</a></li>
+  
+</ul>
 	<!--/.Navbar -->
    
     <div class="container contact">
