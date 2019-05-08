@@ -1,15 +1,19 @@
 body{
-     background-color: #89cff0;
+     background: #7F7FD5;
+	       background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+	        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
 }
  .contact{
      padding: 4%;
      height: 400px;
 }
  .col-md-3{
+	 	 
      background: #ff9b00;
      padding: 4%;
      border-top-left-radius: 0.5rem;
      border-bottom-left-radius: 0.5rem;
+	 	 margin-bottom: 10%;
 }
  .contact-info{
      margin-top:10%;
@@ -25,6 +29,7 @@ body{
      padding: 3%;
      border-top-right-radius: 0.5rem;
      border-bottom-right-radius: 0.5rem;
+	 	 margin-bottom: 10%;
 }
  .contact-form label{
      font-weight:600;

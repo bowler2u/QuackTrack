@@ -1,16 +1,19 @@
-'use strict';
+//'use strict';
 //--  Dependencies --
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser')
 const redis = require('redis');
+const async = require('async');
 const client = redis.createClient();
 const port = 8080;
 
 function start() {
+	
   const app = express();
   const server = http.createServer(app);
-  let userKey = 0;
+  let feedKey = 0;
+	
   app.use(express.static('public'));
   app.use(bodyParser.urlencoded({
     extended: true
@@ -35,28 +38,51 @@ function start() {
 
   });
 		
-  app.post('/submit', (req, res, next) => {
+  app.post('/submit', (req, res) => {
     let userData = JSON.stringify(req.body);
-    userKey++;
+    feedKey++;
 
-    client.set("postId:" + userKey, userData, (error, result) => {
+    client.set("feedId:" + feedKey, userData, (error, result) => {
       if (error) {
         console.log(error);
         return;
       }
       console.log('Set result: ' + result);
-
-      client.get("postId:" + userKey, (error, result) => {
-        console.log('Get result: ' + result);
-
-      });
-
     });
-    res.sendFile('success.html', {
+    res.sendFile('report.html', {
       root: "./public"
     });
-
   });
+	
+	app.get('/getdata', (req, res) => {
+    var results = [];
+		
+    client.keys('*', (err, keys) => {
+        if (err) return console.log(err);
+			
+        if(keys){
+            async.map(keys, (key, callback) => {
+							
+               client.get(key, function (error, value) {
+                    if (error) return callback(error);
+								 
+                    var result = {};
+                    result['feedId'] = key;
+                    result['data'] = JSON.parse(value);
+                    callback(null, result);
+                }); 
+            }, (error, results) => {
+               if (error) return console.log(error);
+							
+               console.log(results);
+               //res.json({data:results});
+							res.send(results);
+            });
+        }
+    });
+});
+
+	
 
   // Call this middleware if there is a bad route
   app.use((req, res, next) => {
@@ -71,4 +97,3 @@ function start() {
 module.exports = {
   start: start
 };
-
