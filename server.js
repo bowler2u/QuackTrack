@@ -1,10 +1,13 @@
-//'use strict';
+'use strict';
+
 //--  Dependencies --
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser')
 const redis = require('redis');
 const async = require('async');
+const scheduler = require('node-schedule');
+//const servUtil = require('./servUtil');
 const client = redis.createClient();
 const port = 8080;
 
@@ -12,19 +15,16 @@ function start() {
 	
   const app = express();
   const server = http.createServer(app);
-  let feedKey = 0;
+  let feedKey = 1;
 	
   app.use(express.static('public'));
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+	
 
-  //****** Console Tracking for Development ****
-  app.use((req, res, next) => {
-    console.log('[' + process.pid + '] ' + req.method + ' ' + req.url);
-    next();
 
-  });
+	
 
   client.on('error', (err) => {
     console.log("Redis Error " + err);
@@ -39,19 +39,44 @@ function start() {
   });
 		
   app.post('/submit', (req, res) => {
-    let userData = JSON.stringify(req.body);
-    feedKey++;
-
-    client.set("feedId:" + feedKey, userData, (error, result) => {
-      if (error) {
-        console.log(error);
-        return;
-      }
-      console.log('Set result: ' + result);
-    });
-    res.sendFile('report.html', {
-      root: "./public"
-    });
+		let autoCheck = req.body.autoEntry;
+		let userData = JSON.stringify(req.body);
+		
+		if(autoCheck){
+			
+			scheduler.scheduleJob('* * * * *', function(date){
+				feedKey++;
+				console.log('Automatic Entry: feedKey: ' + feedKey + ' UserData: ' + userData);
+				
+				
+				client.set("feedId:" + feedKey, userData, (error, result) => {
+					if (error) {
+						console.log(error);
+						return;
+					}
+					console.log('Set result: ' + result);
+				});	
+				
+			});
+			
+			res.sendFile('report.html', {
+				root: "./public"
+			});
+			
+		}else{
+			feedKey++;
+			client.set("feedId:" + feedKey, userData, (error, result) => {
+				if (error) {
+					console.log(error);
+					return;
+				}
+				console.log('Set result: ' + result);
+			});
+			res.sendFile('report.html', {
+				root: "./public"
+			});	
+			
+			}
   });
 	
 	app.get('/getdata', (req, res) => {
@@ -74,7 +99,7 @@ function start() {
             }, (error, results) => {
                if (error) return console.log(error);
 							
-               console.log(results);
+               //console.log(results);
                //res.json({data:results});
 							res.send(results);
             });
