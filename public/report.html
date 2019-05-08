@@ -2,11 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Free Web tutorials">
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-    <meta name="author" content="John Doe">
+    <meta name="description" content="Web App that tracks duck feeding patterns">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="author" content="Cameron Bowler">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- BootStrap and Table Style Sheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css">
@@ -14,11 +15,76 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/report.css">
     
+    <!-- Angular Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     
   </head>
   <body ng-app="myApp" ng-controller="Ctrl">
-   <script>
+   <!--Navbar -->
+	<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
+		<a class="navbar-brand" href="/">QuackTrack</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+			aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item ">
+					<a class="nav-link" href="/">
+						<i class=""></i> Home
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/">
+						<i class=""></i> Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!--/.Navbar -->
+   
+    <div class="container contact">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="contact-info">
+            <img class="contact-logo" src="./assets/img/QuackTrack.png" alt="image"/>
+            <h2>QuackTrack</h2>
+						<h4>Enjoy your Quack-Tacular Data</h4>
+          </div>
+        </div>
+        <div class="col-md-9" id="duckData">
+          <table id="duckTable" class="table table-striped table-bordered nowrap" >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>DuckCount</th>
+                <th>DuckFood</th>
+                <th>Quantity</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in data">
+                <td>{{x.data.name}}</td>
+                <td>{{x.data.location}}</td>
+                <td>{{x.data.time}}</td>
+                <td>{{x.data.duckCount}}</td>
+                <td>{{x.data.duckFood}}</td>
+                <td>{{x.data.foodCount}}</td>
+                <td>{{x.data.comment}}</td>
+              </tr>
+						</tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+    <!-- Angular for Table Data -->
+    <script>
       var app = angular.module('myApp', []);
       app.controller('Ctrl', function($scope, $http) {																						
 				
@@ -39,51 +105,11 @@
       
       });     
     </script>
-    <div class="container contact">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="contact-info">
-            <img class="contact-logo" src="./assets/img/QuackTrack.png" alt="image"/>
-            <h2>QuackTrack</h2>
-						<h4>Enjoy your Quack-Tacular Data</h4>
-          </div>
-        </div>
-        <div class="col-md-9" id="duckData">
-          <table id="duckTable" class="table table-striped table-bordered nowrap" >
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>DuckCount</th>
-                <th>DuckFood</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="x in data">
-                <td>{{x.data.name}}</td>
-                <td>{{x.data.location}}</td>
-                <td>{{x.data.time}}</td>
-                <td>{{x.data.duckCount}}</td>
-                <td>{{x.data.duckFood}}</td>
-                <td>{{x.data.foodCount}}</td>
-              </tr>
-            </tbody>
-<!--
-            <tfoot>
-              	<th>Name</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>DuckCount</th>
-                <th>DuckFood</th>
-                <th>Quantity</th>
-            </tfoot>
--->
-          </table>
-        </div>
-      </div>
-    </div>
+    
+    <!-- Bootstrap, Tables and Jquery Libraries -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
