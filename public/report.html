@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/report.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
+  </head>
+  <body ng-app="myApp" ng-controller="Ctrl">
+   <script>
+      var app = angular.module('myApp', []);
+      app.controller('Ctrl', function($scope, $http) {																						
+				
+				$scope.data = [];
+
+				function loadData() {
+						$http.get("http://localhost:8080/getdata")
+								.then(function (response) {
+										$scope.data = response.data;
+										//console.log($scope.data);
+								})
+								.catch(function(error) {
+										$scope.error = error;
+								});
+				}
+				
+				loadData();
+      
+      });     
+    </script>
+    <div class="container contact">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="contact-info">
+            <img class="contact-logo" src="./assets/img/QuackTrack.png" alt="image"/>
+            <h2>QuackTrack</h2>
+						<h4>Enjoy your Quack-Tacular Data</h4>
+          </div>
+        </div>
+        <div class="col-md-9" id="duckData">
+          <table id="duckTable" class="table table-striped table-bordered nowrap" >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>DuckCount</th>
+                <th>DuckFood</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in data">
+                <td>{{x.data.name}}</td>
+                <td>{{x.data.location}}</td>
+                <td>{{x.data.time}}</td>
+                <td>{{x.data.duckCount}}</td>
+                <td>{{x.data.duckFood}}</td>
+                <td>{{x.data.foodCount}}</td>
+              </tr>
+            </tbody>
+<!--
+            <tfoot>
+              	<th>Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>DuckCount</th>
+                <th>DuckFood</th>
+                <th>Quantity</th>
+            </tfoot>
+-->
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
