@@ -4,111 +4,84 @@
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser')
-const redis = require('redis');
-const async = require('async');
+const redisFunc = require('./servJS/redis')
 const scheduler = require('node-schedule');
-//const servUtil = require('./servUtil');
-const client = redis.createClient();
+const servUtil = require('./servJS/servUtil');
 const port = 8080;
 
 function start() {
 	
+	// Initilize express and our feed id's
   const app = express();
   const server = http.createServer(app);
-  let feedKey = 1;
-	
+  let feedKey = 0;
   app.use(express.static('public'));
   app.use(bodyParser.urlencoded({
     extended: true
   }));
 	
-
-
-	
-
-  client.on('error', (err) => {
-    console.log("Redis Error " + err);
-
-  });
-
+	// Load our Index page
   app.get('/', (req, res) => {
+		
     res.sendFile('main.html', {
       root: "./public"
     });
 
   });
-		
+	
+	// Submit data
   app.post('/submit', (req, res) => {
+		
 		let autoCheck = req.body.autoEntry;
 		let userData = JSON.stringify(req.body);
 		
 		if(autoCheck){
 			
-			scheduler.scheduleJob('* * * * *', function(date){
+			feedKey++;
+			redisFunc.setData(feedKey, userData);
+			
+			// Start a scheduled data entry at 12 each day, using original data entry. 
+			scheduler.scheduleJob('* 1 * * *', function(date){
 				feedKey++;
-				console.log('Automatic Entry: feedKey: ' + feedKey + ' UserData: ' + userData);
-				
-				
-				client.set("feedId:" + feedKey, userData, (error, result) => {
-					if (error) {
-						console.log(error);
-						return;
-					}
-					console.log('Set result: ' + result);
-				});	
-				
+				console.log('Automatic Entry: FeedKey: ' + feedKey + ' || UserData: ' + userData);
+				redisFunc.setData(feedKey, userData);
 			});
 			
-			res.sendFile('report.html', {
+			res.sendFile('success.html', {
 				root: "./public"
 			});
 			
 		}else{
+			
 			feedKey++;
-			client.set("feedId:" + feedKey, userData, (error, result) => {
-				if (error) {
-					console.log(error);
-					return;
-				}
-				console.log('Set result: ' + result);
-			});
-			res.sendFile('report.html', {
+			redisFunc.setData(feedKey, userData);
+			
+			res.sendFile('success.html', {
 				root: "./public"
 			});	
 			
 			}
   });
 	
+	// Retrieve data report
 	app.get('/getdata', (req, res) => {
-    var results = [];
+    
+		const data = redisFunc.getData(send);
 		
-    client.keys('*', (err, keys) => {
-        if (err) return console.log(err);
-			
-        if(keys){
-            async.map(keys, (key, callback) => {
-							
-               client.get(key, function (error, value) {
-                    if (error) return callback(error);
-								 
-                    var result = {};
-                    result['feedId'] = key;
-                    result['data'] = JSON.parse(value);
-                    callback(null, result);
-                }); 
-            }, (error, results) => {
-               if (error) return console.log(error);
-							
-               //console.log(results);
-               //res.json({data:results});
-							res.send(results);
-            });
-        }
-    });
+		function send(data){
+			res.send(data);
+		};	
 });
-
+		
+	// Login route
+	app.post('/login', (req, res) => {
+		//TODO:  Add in login & Security 
+		res.sendFile('report.html', {
+      root: "./public"
+    });
+		
+	}); 
 	
-
   // Call this middleware if there is a bad route
   app.use((req, res, next) => {
     //res.status(404).sendFile("error.html", {root:"./public"});    SEND AN NICE 404 FORM
