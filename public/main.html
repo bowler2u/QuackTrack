@@ -23,20 +23,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">
-						<i class=""></i> Home
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
+
 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-user"></i> Admin </a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-						<a class="dropdown-item" data-toggle="modal" data-target="#modalLoginForm">My account</a>
-						<a class="dropdown-item" href="#">Log out</a>
+			
+						<form action="http://localhost:8080/report" method="post">
+						<input type="submit" value="Reports" class='dropdown-item'>
+						
+				</form>
 					</div>
 				</li>
 			</ul>
@@ -82,9 +80,15 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="duckFood">Food Type</label>
+									<label class="control-label col-sm-2" for="duckFood">Food Fed</label>
 									<div class="col-sm-10">          
 										<input type="text" class="form-control inputstl" id="duckFood" placeholder="What were the ducks fed" name="duckFood" maxlength="32" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-2" for="duckFood">Food Category</label>
+									<div class="col-sm-10">          
+										<input type="text" class="form-control inputstl" id="foodType" placeholder="ie vegetables, wheat etc.." name="foodType" maxlength="32" required>
 									</div>
 								</div>
 								<div class="form-group">

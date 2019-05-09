@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 function stringCheck(str){
 	
 	if(!typeof str == 'string'){

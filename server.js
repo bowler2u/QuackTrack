@@ -4,7 +4,7 @@
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser')
-const redisFunc = require('./servJS/redis')
+const redis = require('./servJS/redis')
 const scheduler = require('node-schedule');
 const servUtil = require('./servJS/servUtil');
 const port = 8080;
@@ -14,7 +14,10 @@ function start() {
 	// Initilize express and our feed id's
   const app = express();
   const server = http.createServer(app);
-  let feedKey = 0;
+	
+	// Creating a unique key based on the milisecond the key is called
+  let feedKey = +new Date();
+	
   app.use(express.static('public'));
   app.use(bodyParser.urlencoded({
     extended: true
@@ -37,26 +40,27 @@ function start() {
 		
 		if(autoCheck){
 			
-			feedKey++;
-			redisFunc.setData(feedKey, userData);
+			redis.setData(feedKey, userData);
 			
 			// Start a scheduled data entry at 12 each day, using original data entry. 
-			scheduler.scheduleJob('* 1 * * *', function(date){
+			scheduler.scheduleJob('* * * * *', function(date){
 				feedKey++;
-				console.log('Automatic Entry: FeedKey: ' + feedKey + ' || UserData: ' + userData);
-				redisFunc.setData(feedKey, userData);
+				console.log(`Automatic Entry: FeedKey: ${feedKey} || UserData: ${userData}`);
+				
+				
+				
+				redis.setData(feedKey, userData);
 			});
 			
-			res.sendFile('success.html', {
+			res.sendFile('report.html', {
 				root: "./public"
 			});
 			
 		}else{
 			
-			feedKey++;
-			redisFunc.setData(feedKey, userData);
+			redis.setData(feedKey, userData);
 			
-			res.sendFile('success.html', {
+			res.sendFile('report.html', {
 				root: "./public"
 			});	
 			
@@ -66,7 +70,7 @@ function start() {
 	// Retrieve data report
 	app.get('/getdata', (req, res) => {
     
-		const data = redisFunc.getData(send);
+		const data = redis.getData(send);
 		
 		function send(data){
 			res.send(data);
@@ -74,7 +78,7 @@ function start() {
 });
 		
 	// Login route
-	app.post('/login', (req, res) => {
+	app.post('/report', (req, res) => {
 		//TODO:  Add in login & Security 
 		res.sendFile('report.html', {
       root: "./public"

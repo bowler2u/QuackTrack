@@ -1,6 +1,7 @@
 $(document).ready(function() {
-					  
-	$('#duckData').delay(1000).fadeIn(1000);
+	
+	$('.loader').delay(2000).fadeOut(1000);			  
+	$('.duckData').delay(2000).fadeIn(1000);
 	
 	setTimeout(function(){
 			
