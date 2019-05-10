@@ -4,10 +4,10 @@
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
-const redisF = require('./servJS/redis');
+const redisF = require('./redis/redis');
 const scheduler = require('node-schedule');
-const dataF = require('./servJS/data');
-const port = 8080;
+const dataF = require('./redis/data');
+const port = 8081;
 
 function start() {
 	
