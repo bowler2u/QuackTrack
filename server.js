@@ -3,8 +3,7 @@ const server = require('./app');
 const cluster = require('cluster');
 const cores = require('os').cpus().length;
 
- // Setting up a cluster of processies for scaleability and load-balancing 
-
+// Setting up a cluster of processies for scaleability and load-balancing 
 if(cluster.isMaster) 
 {
     console.log(' [' + process.pid + '] Main process started');
@@ -18,4 +17,4 @@ else // If it is a worker
     console.log(' [' + process.pid + '] Worker process started');
     server.start(); 
 }
-//server.start(); 
+
