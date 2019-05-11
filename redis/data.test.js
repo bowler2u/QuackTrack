@@ -8,7 +8,7 @@ test('dataCheck is a function', () => {
 
 test('Return true if string || number', () => {
   expect(data.dataCheck('a')).toEqual(true);
-	expect(data.dataCheck(2)).toEqual(true);
+  expect(data.dataCheck(2)).toEqual(true);
 });
 
 test('Works with numbers & Characters in the string', () => {
@@ -16,10 +16,10 @@ test('Works with numbers & Characters in the string', () => {
 });
 
 test('Return false if !string', () => {
-	expect(data.dataCheck(true)).toEqual(false);
-	expect(data.dataCheck(false)).toEqual(false);
-	expect(data.dataCheck(null)).toEqual(false);
-	
+  expect(data.dataCheck(true)).toEqual(false);
+  expect(data.dataCheck(false)).toEqual(false);
+  expect(data.dataCheck(null)).toEqual(false);
+
 });
 
 
@@ -31,6 +31,5 @@ test('cleanData is a function', () => {
 
 test('cleanData removes <html> & special characters', () => {
   expect(data.cleanData('<h1>Hi</h1>')).toEqual('h1Hih1');
-	expect(data.cleanData('#something#!(#*)')).toEqual('something');
+  expect(data.cleanData('#something#!(#*)')).toEqual('something');
 });
-
