@@ -13,14 +13,22 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/report.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
     <!-- Angular Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   </head>
   <body ng-app="myApp" ng-controller="Ctrl">
     <!--Navbar -->
-    <ul class="nav nav-pills">
-      <li role="presentation" class="navbar-brand "><a href="/">Logout</a></li>
-    </ul>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">QuackTrack</a>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/main.html"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <!--/.Navbar -->
     <div class="loader"></div>
     <div class="container contact">
@@ -62,14 +70,14 @@
       
       $scope.data = [];
       
-      function loadData() {//URL-DEV : "http://localhost:8080/getdata"
+      function loadData() {//URL-DEV : "http://localhost:8081/getdata"  http://quacktrackdev-env.rkrrhmmiem.us-west-2.elasticbeanstalk.com/getdata
       $http.get("http://quacktrackdev-env.rkrrhmmiem.us-west-2.elasticbeanstalk.com/getdata")
-      		.then(function (response) {
-      				$scope.data = response.data;
-      		})
-      		.catch(function(error) {
-      				$scope.error = error;
-      		});
+        .then(function (response) {
+      		$scope.data = response.data;
+      	})
+      	.catch(function(error) {
+      		$scope.error = error;
+      	});
       }
       
       loadData();
@@ -86,6 +94,7 @@
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/bd6a7304f8.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
