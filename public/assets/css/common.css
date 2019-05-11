@@ -1,0 +1,23 @@
+body {
+  background: #7F7FD5;
+  background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+  background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+}
+
+.col-md-3 {
+  background: white;
+  padding: 4%;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.col-md-9 {
+  background: #fff;
+  padding: 3%;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.navbar-dark .navbar-brand:hover {
+    color: #3379b7;
+}

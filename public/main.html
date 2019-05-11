@@ -1,99 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>QuackTrack</title>
+
     <meta charset="UTF-8">
     <meta name="description" content="Web App that tracks duck feeding patterns">
     <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta name="author" content="Cameron Bowler">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/common.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/nav.css">
-    <link rel="stylesheet" href="assets/css/glyphicons.css">
   </head>
   <body>
-    <!--Navbar -->
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">  
-          <a class="navbar-brand" href="/">QuackTrack</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/report.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-        </ul>
+
+    <!--Header -->
+    <nav class="header mb-1 navbar navbar-expand-lg navbar-dark info-color">
+      <a class="navbar-brand" href="/">QuackTrack</a>
+      <div class="navbar-nav ml-auto">
+        <a class="navbar-brand" href="/report">Reports</a>
       </div>
     </nav>
-    <!--/.Navbar -->
-    <!-- Contact Body -->
-    <div class="container contact">
+    <!--/.Header -->
+
+    <!-- Content -->
+    <div class="container content-wrapper">
       <div class="row">
         <div class="col-md-3">
-          <div class="contact-info">
-            <img class="contact-logo" src="./assets/img/QuackTrack.png" alt="image"/>
+          <div class="quack-track-info">
+            <img class="quack-track-logo" src="./assets/img/QuackTrack.png" alt="image"/>
             <h2>Welcome To QuackTrack</h2>
-            <h5>We're tracking duck feeds around the globe and would love your help! </h5>
+            <h5>We're tracking ducks around the globe and would love your help!</h5>
           </div>
         </div>
         <div class="col-md-9">
-          <form action="http://quacktrackdev-env.rkrrhmmiem.us-west-2.elasticbeanstalk.com/submit" method="post">
-            <!-- http://localhost:8081/submit --><!-- http://quacktrackdev-env.rkrrhmmiem.us-west-2.elasticbeanstalk.com/submit  -->
-            <div class="contact-form">
+          <form action="/submit" method="post">
+            <div class="form">
               <div class="form-group">
-                <label class="control-label col-sm-2" for="name">Name:</label>
-                <div class="col-sm-10">          
-                  <input type="text" class="form-control inputstl" id="name" placeholder="Enter Your Name" name="name" maxlength="32" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="location">Location</label>
-                <div class="col-sm-10">          
-                  <input type="text" class="form-control inputstl" id="location" placeholder="Enter location" name="location" maxlength="32" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="time">Time</label>
+                <label class="control-label col-sm-12" for="name">Name:</label>
                 <div class="col-sm-10">
-                  <input type="datetime-local" class="form-control inputstl" id="time" name="time" value="2019-05-13T12:00" required>
+                  <input type="text" class="form-control" id="name" placeholder="Enter Your Name" name="name" maxlength="32" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-2" for="duckCount">Duck Count</label>
-                <div class="col-sm-10">          
-                  <input type="number"  class="form-control inputstl" id="duckCount" placeholder="How many ducks were fed" name="duckCount" min="1" max="1000" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="duckFood">Food Fed</label>
-                <div class="col-sm-10">          
-                  <input type="text" class="form-control inputstl" id="duckFood" placeholder="What were the ducks fed" name="duckFood" maxlength="32" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="duckFood">Food Category</label>
-                <div class="col-sm-10">          
-                  <input type="text" class="form-control inputstl" id="foodType" placeholder="ie vegetables, wheat etc.." name="foodType" maxlength="32" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="foodCount">Food Quantity</label>
-                <div class="col-sm-10">          
-                  <input type="text" class="form-control inputstl" id="foodCount" placeholder="Quantity of feed" name="foodCount" maxlength="32" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="comment">Comments:</label>
+                <label class="control-label col-sm-12" for="location">Location</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control inputstl" rows="4" id="comment" name="comment" maxlength="255"></textarea>
+                  <input type="text" class="form-control" id="location" placeholder="Enter location" name="location" maxlength="32" required>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-2" for="foodCount">Auto-Complete form Daily?</label>
-                <div class="col-sm-10">          
-                  <input type="checkbox" id="autoEntry" name="autoEntry" data-toggle="toggle">
+                <label class="control-label col-sm-12" for="time">Time</label>
+                <div class="col-sm-10">
+                  <input type="datetime-local" class="form-control" id="time" name="time" value="2019-05-13T12:00">
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <label class="control-label col-sm-12" for="duckCount">Duck Count</label>
+                <div class="col-sm-10">
+                  <input type="number"  class="form-control" id="duckCount" placeholder="How many ducks were fed" name="duckCount" min="1" max="100" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-12" for="duckFood">Food Fed</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="duckFood" placeholder="What were the ducks fed" name="duckFood" maxlength="32" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-12" for="foodType">Food Category</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="foodType" placeholder="ie vegetables, wheat etc.." name="foodType" maxlength="32" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-12" for="foodCount">Food Quantity</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="foodCount" placeholder="Quantity of feed" name="foodCount" maxlength="32" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-12" for="comment">Comments:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" rows="4" id="comment" name="comment" maxlength="255"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-12" for="autoEntry">Auto-Entry:</label>
+                <div class="col-sm-10">
+                  <input type="checkbox"  data-toggle="toggle" id="autoEntry" name="autoEntry" data-size="lg">
+                  Check this box to submit the same report daily
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
                   <button type="submit" class="btn btn-default">Submit</button>
                 </div>
               </div>
@@ -102,13 +103,6 @@
         </div>
       </div>
     </div>
-    <!-- /.Contact Body -->
-    <script src="https://use.fontawesome.com/bd6a7304f8.js"></script>    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <!-- /.Content -->
   </body>
 </html>

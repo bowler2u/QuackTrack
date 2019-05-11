@@ -1,8 +1,8 @@
 .loader {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  margin-left: -50px;
+	position: absolute;
+	top:20%;
+	left:50%;
+	margin-left: -50px;
   border: 16px solid #f3f3f3;
   border-top: 16px solid #7f85d8;
   border-radius: 50%;
@@ -11,36 +11,13 @@
   animation: spin 2s linear infinite;
 }
 
+#duckData {
+	display: none;
+	background-color: #fff;
+	padding: 3%;
+}
+
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-
-.navbar-header {
-  width: 100%;
-}
-
-.container-fluid {
-  padding-top: 3px;
-  padding-right: 30px;
-  padding-left: 30px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media only screen and (max-width: 414px) {
-  .navbar-nav {
-    float: right!important;
-  }
-}
-
-.duckData {
-  display: none;
-  background-color: #fff;
-  padding: 3%;
-}
-COPY TO CLIPBOARD	 SELECT ALL
