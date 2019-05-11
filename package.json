@@ -2,9 +2,9 @@
   "name": "freshworks",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server",
+    "start": "node app",
     "test": "jest"
   },
   "author": "",
