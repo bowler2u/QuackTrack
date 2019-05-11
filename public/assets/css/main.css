@@ -1,82 +1,42 @@
-body {
-  background: #7F7FD5;
-  background: -webkit-linear-gradient(left, #91EAE4, #86A8E7, #7F7FD5);
-  background: -o-linear-gradient(left, #91EAE4, #86A8E7, #7F7FD5);
-  background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-}
-
-.nav-item:hover {
-  cursor: pointer;
-}
-
-.contact {
-  padding: 4%;
+.content-wrapper {
+  padding: 2rem;
   height: 400px;
 }
-
-.col-md-3 {
-  background: white;
-  padding: 4%;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
+.quack-track-logo {
+  width: 50%;
 }
-
-.contact-info {
-  margin-top: 10%;
+.quack-track-info {
+  margin-top:10%;
 }
-
-.contact-info img {
+.quack-track-info img {
   margin-bottom: 15%;
 }
-
-.contact-info h2 {
+.quack-track-info h2 {
   margin-bottom: 10%;
 }
 
-.col-md-9 {
-  background: #fff;
-  padding: 3%;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+.form label {
+  font-weight:600;
 }
-
-.contact-form label {
-  font-weight: 600;
-}
-
-.contact-form button {
+.form button {
   background: #25274d;
   color: #fff;
   font-weight: 600;
   width: 25%;
 }
-
-.contact-form button:hover {
-  background: #3379b7;
+.form button:focus {
+  box-shadow:none;
 }
-
-.contact-form button {
-  background: #25274d;
-  color: #fff;
-  font-weight: 600;
-  width: 25%;
-}
-
-.contact-form button:focus {
-  box-shadow: none;
-}
-
-.contact-logo {
-  width: 50%;
-}
-
-.inputstl {
+.form input, .form textarea {
   padding: 9px;
   border: solid 1px #86A8E7;
   outline: 0;
   background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #86A8E7), to(#FFFFFF));
   background: -moz-linear-gradient(top, #91EAE4, #86A8E7 1px, #7F7FD5 25px);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+.form button:hover {
+    background: #3379b7;
 }

@@ -2,13 +2,13 @@
   "name": "freshworks",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "scripts": {
-		"start": "node server",
-    "test": "jest"
-  },
   "author": "",
   "license": "ISC",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
   "dependencies": {
     "async": "^2.6.2",
     "body-parser": "^1.19.0",
