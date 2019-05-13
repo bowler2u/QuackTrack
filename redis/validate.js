@@ -1,12 +1,12 @@
 /**
- * Function that checks data input is a string or a number
+ * Function that checks if data input is a string or a number
  *
  * @param {Any} data - a param that will return 'true' if a 'string' or 'number' 
  */
 const dataCheck = (data) => typeof data == 'string' || typeof data == 'number';
 
 /**
- * Function that ...
+ * Function that removes all special characters from a string or number
  *
  * @param {String|HTMLElement} data - a string or number, will return with special chars removed. 
  */

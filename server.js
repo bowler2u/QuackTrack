@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const redis = require('./redis/redis');
 const scheduler = require('node-schedule');
-const data = require('./redis/data');
+const validate = require('./redis/validate');
 const port = 8081;
 
 const start = () => {
@@ -40,8 +40,8 @@ const start = () => {
 
 		// Clean data
 		for (let val in formData){
-			if (data.dataCheck(formData[val])) {
-				formData[val] = data.cleanData(formData[val]);
+			if (validate.dataCheck(formData[val])) {
+				formData[val] = validate.cleanData(formData[val]);
 			} else {
 				console.log(`Invalid Data type: ${formData[val]}`);
 				return;
@@ -52,11 +52,11 @@ const start = () => {
 		const userData = JSON.stringify(formData);
 		redis.setData(feedKey, userData);
 
-		// Check for User enabling auto-submission. If so, start a scheduled data entry at 12 each day,
-		// using original data entry.
+		// Check for User enabling auto-submission. If so, start a scheduled data entry at 12:01pm each day,
+		// using original entry data.
 		const autoCheck = req.body.autoEntry;
 		if (autoCheck) {
-			scheduler.scheduleJob('* * * * *', (date) => {//** FOR TESTING CRON HAS BEEN SET FOR EVERY MINUTE **
+			scheduler.scheduleJob('1 12 * * *', (date) => {// SCHEDULER TEST: Set CRON to '* * * * *' to submit every min. 
 				feedKey++
 				console.log(`Automatic Entry: FeedKey:${feedKey} UserData:${userData}`);
 				redis.setData(feedKey, userData);

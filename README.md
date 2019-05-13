@@ -25,11 +25,11 @@ Ensures you duck feed data reports are organized in our dynamic feed table.
 Very useful for completing your PHD on ducks ;)
 
 ## Project setup
-```
+
 Clone this repo locally to a directory using CLI or manually
 
 Navigate inside your chosen directory through CLI...
-
+```
 npm install
 ```
 ## Redis setup
